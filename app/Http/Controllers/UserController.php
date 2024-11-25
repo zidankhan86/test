@@ -51,6 +51,13 @@ class UserController extends Controller
                 'name' => $request->name,
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
+                'student_id' => $request->student_id,
+                'phone' => $request->phone,
+                'referral_contact' => $request->referral_contact,
+                'position' => $request->position,
+                'country' => $request->country,
+                'parent_id' => $request->parent_id,
+              
             ]);
 
             // Ensure all role IDs exist before syncing
