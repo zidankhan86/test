@@ -17,12 +17,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('student_id')->unique()->nullable();
-            $table->string('referral_contact')->nullable();
-            $table->string('parent_id')->nullable();
-            $table->string('phone')->nullable();
-            $table->string('country')->nullable();
-            $table->boolean('position')->nullable();
+            $table->enum('status', ['new_user', 'active_user']);
             $table->rememberToken();
             $table->timestamps();
         });

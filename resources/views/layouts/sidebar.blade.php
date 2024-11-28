@@ -55,6 +55,38 @@
                 </li>
                 @endcan
 
+                @can('student-list')
+                <li class="nav-header">Student</li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-users"></i>
+                        <p>
+                            Student Data
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        @can('student-list')
+                        <li class="nav-item">
+                            <a href="{{ route('users.data.index') }}"
+                                class="nav-link {{ request()->routeIs('users.index') ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Student List</p>
+                            </a>
+                        </li>
+                        @endcan
+                        @can('student-create')
+                        <li class="nav-item">
+                            <a href="{{ route('users.data.create') }}"
+                                class="nav-link {{ request()->routeIs('users.create') ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Create Student</p>
+                            </a>
+                        </li>
+                        @endcan
+                    </ul>
+                </li>
+                @endcan
                 <!-- Role Section -->
                 @can('role-list')
                 <li class="nav-header">Role</li>

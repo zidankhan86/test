@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\statusType;
 use App\Models\User;
 use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -57,9 +58,9 @@ class UserController extends Controller
                 'position' => $request->position,
                 'country' => $request->country,
                 'parent_id' => $request->parent_id,
-              
-            ]);
 
+            ]);
+            // $request->status=statusType::PAID;
             // Ensure all role IDs exist before syncing
             $roles = Role::whereIn('id', $request->roles)->pluck('id')->toArray();
 
