@@ -16,17 +16,17 @@ class UserSeeder extends Seeder
         // Create the Admin user and assign the 'admin' role
         $admin = User::create([
             'name' => 'Admin User',
-            'email' => 'admin@mail.com', // Updated email
-            'password' => Hash::make('password'), // Default password for seeding
+            'email' => 'admin@mail.com',
+            'password' => Hash::make('password'),
+            'status' => 'active_user',
         ]);
         $admin->assignRole('admin');
 
-        // Create the Manager user and assign the 'manager' role
         $manager = User::create([
             'name' => 'Manager User',
             'email' => 'manager@mail.com',
             'password' => Hash::make('password'),
-            'status' => '1',
+            'status' => 'active_user',
         ]);
         $manager->assignRole('manager');
     }
