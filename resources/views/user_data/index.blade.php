@@ -27,8 +27,9 @@
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">Student List</h3>
-                            <a href="{{ route('users.data.create') }}" class="btn btn-primary float-right">Create Student
-                                </a>
+                            <a href="{{ route('users.data.create') }}" class="btn btn-primary float-right">Create
+                                Student
+                            </a>
                         </div>
                         <div class="card-body">
                             <table id="example1" class="table table-bordered table-striped">
@@ -36,7 +37,10 @@
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        
+
+                                        <th>Name</th>
+                                        <th>Email</th>
+
                                         <th>Phone</th>
 
                                         <th>Contact Person</th>
@@ -53,6 +57,8 @@
                                     @foreach ($users as $user)
                                     <tr>
                                         <td>{{ $user->id }}</td>
+                                        <td>{{ $user->user->name }}</td>
+                                        <td>{{ $user->user->email }}</td>
                                         <td>{{ $user->phone }}</td>
                                         <td>{{ $user->referral_contact }}</td>
                                         <td>{{ $user->parent_id }}</td>
@@ -66,15 +72,16 @@
                                                 class="btn btn-sm btn-primary">Edit</a>
                                             <a href="{{ route('users.data.show', $user->id) }}"
                                                 class="btn btn-sm btn-info">View</a>
-                                                <form action="{{ route('users.data.delete', $user->id) }}" method="POST" style="display:inline;">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-sm btn-danger" 
-                                                        onclick="return confirm('Are you sure you want to delete this user?')">
-                                                        Delete
-                                                    </button>
-                                                </form>
-                                                
+                                            <form action="{{ route('users.data.delete', $user->id) }}" method="POST"
+                                                style="display:inline;">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-sm btn-danger"
+                                                    onclick="return confirm('Are you sure you want to delete this user?')">
+                                                    Delete
+                                                </button>
+                                            </form>
+
                                         </td>
                                     </tr>
                                     @endforeach
