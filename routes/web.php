@@ -1,16 +1,10 @@
 <?php
 
-use App\Http\Controllers\BottleCompanyController;
-use App\Http\Controllers\BottleListController;
-use App\Http\Controllers\BottleTypeController;
-use App\Http\Controllers\CustomerController;
-use App\Http\Controllers\DealerController;
-use App\Http\Controllers\InventoryController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
-use App\Http\Controllers\TaxController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\UserDataController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -64,7 +58,24 @@ Route::middleware('auth')->group(function () {
         Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('users.destroy');
     });
 
-    
+    Route::middleware('permission:student-list')->group(function () {
+        Route::get('/student-index', [UserDataController::class, 'index'])->name('users.data.index');
+        Route::get('/student-show/{id}', [UserDataController::class, 'show'])->name('users.data.show');
+    });
+
+    Route::middleware('permission:student-create')->group(function () {
+        Route::get('/student-create', [UserDataController::class, 'create'])->name('users.data.create');
+        Route::post('/student-store', [UserDataController::class, 'store'])->name('users.data.store');
+    });
+
+    Route::middleware('permission:student-edit')->group(function () {
+        Route::get('/student-edit/{id}', [UserDataController::class, 'edit'])->name('users.data.edit');
+        Route::put('/student-update/{id}', [UserDataController::class, 'update'])->name('users.data.update');
+    });
+
+    Route::middleware('permission:student-delete')->group(function () {
+        Route::delete('/student-delete/{id}', [UserDataController::class, 'delete'])->name('users.data.delete');
+    });
 });
 
 require __DIR__.'/auth.php';
